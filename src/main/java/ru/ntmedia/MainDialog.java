@@ -1,15 +1,16 @@
 package ru.ntmedia;
 
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import java.awt.*;
-import java.awt.event.*;
-import java.io.File;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Locale;
 
 public class MainDialog extends JDialog {
     private JPanel contentPane;
@@ -126,20 +127,20 @@ public class MainDialog extends JDialog {
     private void onOK() {
         //System.err.println(srcTextField.getText());
         if(!Files.exists(Paths.get(srcTextField.getText()))) {
-            JOptionPane.showMessageDialog(null, "Указанный каталог с файлами Excel не существует. Выберите другой каталог.", "Конвертация файлов", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Excel指定的文件目录不存在。请选择另一个目录.", "转换文件", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         if(!Files.exists(Paths.get(destTextField.getText()))) {
-            JOptionPane.showMessageDialog(null, "Указанный каталог для сохранения файлов HTML не существует. Выберите другой каталог.", "Конвертация файлов", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "保存HTML文件指定的目录不存在。请选择另一个目录.", "转换文件", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         App app = new App(srcTextField.getText(), destTextField.getText());
         try {
             app.convertAllFiles();
-            JOptionPane.showMessageDialog(null, "Конвертация завершена успешно.", "Конвертация файлов", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "转换成功完成。", "转换文件", JOptionPane.INFORMATION_MESSAGE);
         } catch(Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Конвертация завершена с ошибкой:\n" + e.getMessage(), "Конвертация файлов", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "转换错误：\n" + e.getMessage(), "转换文件", JOptionPane.WARNING_MESSAGE);
         }
 
         dispose();
@@ -151,29 +152,29 @@ public class MainDialog extends JDialog {
     }
 
     private void setComponentsText() {
-        UIManager.put("FileChooser.openDialogTitleText", "Открыть");
-        UIManager.put("FileChooser.saveDialogTitleText", "Сохранить");
-        UIManager.put("FileChooser.lookInLabelText", "Каталог");
-        UIManager.put("FileChooser.openButtonText", "Открыть");
-        UIManager.put("FileChooser.saveButtonText", "Выбрать");
-        UIManager.put("FileChooser.cancelButtonText", "Отмена");
-        UIManager.put("FileChooser.fileNameLabelText", "Имя файла");
-        UIManager.put("FileChooser.folderNameLabelText", "Каталог");
-        UIManager.put("FileChooser.filesOfTypeLabelText", "Типы файлов");
-        UIManager.put("FileChooser.openButtonToolTipText", "OpenSelectedFile");
-        UIManager.put("FileChooser.cancelButtonToolTipText","Отмена");
-        UIManager.put("FileChooser.fileNameHeaderText","Имя файла");
-        UIManager.put("FileChooser.upFolderToolTipText", "UpOneLevel");
-        UIManager.put("FileChooser.homeFolderToolTipText","Desktop");
-        UIManager.put("FileChooser.newFolderToolTipText","CreateNewFolder");
-        UIManager.put("FileChooser.listViewButtonToolTipText","List");
-        UIManager.put("FileChooser.newFolderButtonText","CreateNewFolder");
-        UIManager.put("FileChooser.renameFileButtonText", "RenameFile");
-        UIManager.put("FileChooser.deleteFileButtonText", "DeleteFile");
-        UIManager.put("FileChooser.filterLabelText", "Типы файлов");
-        UIManager.put("FileChooser.detailsViewButtonToolTipText", "Details");
-        UIManager.put("FileChooser.fileSizeHeaderText","Size");
-        UIManager.put("FileChooser.fileDateHeaderText", "DateModified");
-        UIManager.put("FileChooser.acceptAllFileFilterText", "Все файлы");
+//        UIManager.put("FileChooser.openDialogTitleText", "打开");
+//        UIManager.put("FileChooser.saveDialogTitleText", "保存");
+//        UIManager.put("FileChooser.lookInLabelText", "目录");
+//        UIManager.put("FileChooser.openButtonText", "打开");
+//        UIManager.put("FileChooser.saveButtonText", "保存");
+//        UIManager.put("FileChooser.cancelButtonText", "取消");
+//        UIManager.put("FileChooser.fileNameLabelText", "文件名称");
+//        UIManager.put("FileChooser.folderNameLabelText", "目录名称");
+//        UIManager.put("FileChooser.filesOfTypeLabelText", "文件类型");
+//        UIManager.put("FileChooser.openButtonToolTipText", "打开");
+//        UIManager.put("FileChooser.cancelButtonToolTipText","取消");
+//        UIManager.put("FileChooser.fileNameHeaderText","选择文件");
+//        UIManager.put("FileChooser.upFolderToolTipText", "向上");
+//        UIManager.put("FileChooser.homeFolderToolTipText","桌面");
+//        UIManager.put("FileChooser.newFolderToolTipText","CreateNewFolder");
+//        UIManager.put("FileChooser.listViewButtonToolTipText","List");
+//        UIManager.put("FileChooser.newFolderButtonText","CreateNewFolder");
+//        UIManager.put("FileChooser.renameFileButtonText", "RenameFile");
+//        UIManager.put("FileChooser.deleteFileButtonText", "DeleteFile");
+//        UIManager.put("FileChooser.filterLabelText", "Типы файлов");
+//        UIManager.put("FileChooser.detailsViewButtonToolTipText", "Details");
+//        UIManager.put("FileChooser.fileSizeHeaderText","Size");
+//        UIManager.put("FileChooser.fileDateHeaderText", "DateModified");
+//        UIManager.put("FileChooser.acceptAllFileFilterText", "Все файлы");
     }
 }

@@ -47,7 +47,7 @@ public class App {
             public void run() {
                 MainDialog dlg = new MainDialog();
                 dlg.pack();
-                dlg.setTitle("Конвертация файлов из Excel в HTML");
+                dlg.setTitle("从Excel HTML文件转换");
                 dlg.setLocationRelativeTo(null);
                 dlg.setVisible(true);
             }
@@ -57,7 +57,7 @@ public class App {
     public void convertAllFiles() throws IOException {
         File dir = new File(this.srcFolder);
         if (dir == null) {
-            throw new IllegalArgumentException("Не удалось открыть указанный каталог: " + this.srcFolder);
+            throw new IllegalArgumentException("无法打开指定的目录： " + this.srcFolder);
         }
         for (File f : dir.listFiles(new FilenameFilter() {
             @Override
@@ -88,7 +88,7 @@ public class App {
 
     public static void writeHtmlFile(String fileName, String data) throws IOException {
         if (fileName == null || fileName.equals("")) {
-            throw new IllegalArgumentException("Имя файла не указано.");
+            throw new IllegalArgumentException("未指定文件名.");
         }
         OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(fileName), "CP1251");
         osw.write(data);
